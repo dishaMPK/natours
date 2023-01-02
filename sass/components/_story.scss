@@ -1,0 +1,85 @@
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: $box-shadow;
+    background-color: rgba($color-white,.8);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-10deg);
+
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 3rem;
+        padding-left: 6rem;
+    }
+    @include respond(phone) {
+        transform: skewX(0);
+    }
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        float: left;
+        transform: translateX(-1.5rem) skewX(10deg);
+        position: relative; 
+        overflow: hidden;
+
+        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
+
+        @include respond(phone) {
+            transform:translateX(-1.5rem) skewX(0);
+        }
+    }
+
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        transition: all .5s ease;
+        backface-visibility: hidden;
+    }
+
+    &__text {
+        transform: skewX(10deg);
+        backface-visibility: hidden;
+
+        @include respond(phone) {
+            transform: skewX(0);
+        }
+    }
+
+    &__caption {
+        text-transform: uppercase;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,50%);
+        opacity: 0;
+        color: rgba($color-white,1);
+        font-size: 1.7rem;
+        text-align: center;
+        transition: all .5s ease;
+        backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+            transform: translate(-50%,-50%);
+            opacity: 1;
+        }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+            filter: blur(3px) brightness(80%);
+        }  
+}
+
+
+
